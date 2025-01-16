@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Установка Курсов | MarketCSGO</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1d, #2c2c34);
+            color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #444;
+            border-radius: 10px;
+            background: #2c2c34;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+        }
+        h1 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #ffd700;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #e5c100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Установить Курсы</h1>
+        <form method="POST">
+            <input type="text" name="usdt_to_rub" placeholder="Курс USDT/RUB" value="{{ usdt_to_rub }}">
+            <input type="text" name="cny_to_usdt" placeholder="Курс CNY/USDT" value="{{ cny_to_usdt }}">
+            <button type="submit">Сохранить Курсы</button>
+        </form>
+    </div>
+</body>
+</html>

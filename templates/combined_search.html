@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объединённый Поиск</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1d, #2c2c34);
+            color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2c2c34;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+        }
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #ffd700;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #e5c100;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #444;
+            text-align: center;
+        }
+        th {
+            background: #ffd700;
+            color: #000;
+        }
+        td {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Объединённый Поиск</h1>
+
+        <!-- Форма для ввода курсов и названия товара -->
+        <form method="POST">
+            <div style="margin-bottom: 15px;">
+                <input type="text" name="usdt_to_rub" placeholder="Курс USDT/RUB" value="{{ usdt_to_rub }}" required>
+                <input type="text" name="cny_to_usdt" placeholder="Курс CNY/USDT" value="{{ cny_to_usdt }}" required>
+            </div>
+            <div>
+                <input type="text" name="item_name" placeholder="Введите название товара" required>
+                <button type="submit">Искать</button>
+            </div>
+        </form>
+
+        <!-- Таблица с результатами -->
+        {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Цена Buff (CNY)</th>
+                    <th>Цена MarketCS (RUB)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in results %}
+                <tr>
+                    <td>{{ item['description'] }}</td>
+                    <td>{{ item['buff_price'] }}</td>
+                    <td>{{ item['market_price'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Кнопка для выгрузки в Google Таблицу -->
+        <form action="{{ url_for('export_to_google_sheet') }}" method="POST" style="margin-top: 20px;">
+            <input type="hidden" name="usdt_to_rub" value="{{ usdt_to_rub }}">
+            <input type="hidden" name="cny_to_usdt" value="{{ cny_to_usdt }}">
+            <button type="submit">Выгрузить в Google Таблицу</button>
+        </form>
+        <form action="{{ url_for('export_to_google_sheet') }}" method="POST" style="margin-top: 20px;">
+    <input type="hidden" name="usdt_to_rub" value="{{ usdt_to_rub }}">
+    <input type="hidden" name="cny_to_usdt" value="{{ cny_to_usdt }}">
+    <button type="submit">Выгрузить первую строку в Google Таблицу</button>
+</form>
+
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск MarketCS</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1d, #2c2c34);
+            color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2c2c34;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+        }
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #ffd700;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #e5c100;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #444;
+            text-align: center;
+        }
+        th {
+            background: #ffd700;
+            color: #000;
+        }
+        td {
+            background: #333;
+        }
+        a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Поиск по MarketCS</h1>
+        <form method="POST">
+            <input type="text" name="market_hash_name" placeholder="Введите market_hash_name" required>
+            <button type="submit">Поиск</button>
+        </form>
+        {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Цена (RUB)</th>
+                    <th>Ссылка</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in results %}
+                <tr>
+                    <td>{{ item['market_hash_name'] }}</td>
+                    <td>{{ item['price'] }}</td>
+                    <td><a href="{{ item['link'] }}" target="_blank">Открыть</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p style="text-align: center;">Результаты не найдены.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

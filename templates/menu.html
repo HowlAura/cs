@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню | MarketCSGO</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1d, #2c2c34);
+            color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #444;
+            border-radius: 10px;
+            background: #2c2c34;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        h1 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 15px 0;
+        }
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #ffd700;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            background: #e5c100;
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MarketCSGO Меню</h1>
+        <ul>
+            <li><a href="{{ url_for('sales_history') }}">История продаж</a></li>
+            <li><a href="{{ url_for('order_history') }}">История ордеров</a></li>
+            <li><a href="{{ url_for('bid_ask') }}">Стакан</a></li>
+            <li><a href="{{ url_for('buff_search') }}">Поиск по Buff163</a></li>
+            <li><a href="{{ url_for('set_rates') }}">Установить Курсы</a></li>
+            <li><a href="{{ url_for('marketcs_search') }}">Поиск по MarketCS</a></li>
+            <li><a href="{{ url_for('combined_search') }}">Объединённый Поиск</a></li>
+
+        </ul>
+    </div>
+</body>
+</html>

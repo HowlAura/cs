@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">CS:GO Market Tool</div>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('menu') }}">Menu</a>
+            <a href="{{ url_for('buff_search') }}">Search</a>
+            <a href="{{ url_for('sales_history') }}">Sales History</a>
+            <a href="{{ url_for('order_history') }}">Order History</a>
+            <a href="{{ url_for('bid_ask') }}">Bid/Ask</a>
+        </nav>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 CSGO Market Tool | All Rights Reserved</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История ордеров | MarketCSGO</title>
+    <style>
+        /* Стили из предыдущего примера */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>История ордеров</h1>
+        {% if orders %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Дата создания</th>
+                        <th>Дата исполнения</th>
+                        <th>Цена</th>
+                        <th>Валюта</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.hash_name }}</td>
+                            <td>{{ order.created }}</td>
+                            <td>{{ order.executed }}</td>
+                            <td>{{ order.price }}</td>
+                            <td>{{ order.currency }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Нет данных для отображения.</p>
+        {% endif %}
+
+        <div style="margin-top: 20px;">
+            <a href="{{ url_for('menu') }}" style="
+                display: inline-block;
+                padding: 10px 20px;
+                background: #555;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            ">
+                ← Назад в меню
+            </a>
+        </div>
+    </div>
+</body>
+</html>
