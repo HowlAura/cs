@@ -194,7 +194,7 @@ def load_goods_from_json(file_path):
 
 
 # Путь к JSON-файлу
-GOODS_FILE = r"C:\Users\Castle\Desktop\goods_data.json"
+GOODS_FILE = "goods_data.json"
 goods_data = load_goods_from_json(GOODS_FILE)
 
 @app.route('/set-rates', methods=['GET', 'POST'])
